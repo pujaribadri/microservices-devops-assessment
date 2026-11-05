@@ -2,7 +2,7 @@
 const db = require("./models");
 const createConnection = async () => {
   try {
-    await db.sequelize.sync({ force: true });
+    await db.sequelize.sync();
     console.log("Synced db.");
   } catch (error) {
     console.log("createConnection has an error:", error);
