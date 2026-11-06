@@ -143,3 +143,5 @@ crash.*.log
 
 # AWS credentials
 .aws/
+
+terraform/tfplan

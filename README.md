@@ -74,3 +74,52 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## API Documentation
 - Sample curls are defined in `.api-curls.txt` file
+# Microservices DevOps Assessment
+
+## Project Overview
+Deployment and monitoring of three Node.js microservices on AWS EC2 using Docker, Jenkins, Terraform, Prometheus and Grafana.
+
+## Architecture
+- AWS EC2 (Ubuntu 24.04)
+- Docker and Docker Compose
+- Nginx reverse proxy
+- PostgreSQL
+- Apache Kafka and Zookeeper
+- Amazon ECR
+- Jenkins CI/CD
+- Prometheus and Node Exporter
+- Grafana
+
+## Microservices
+| Service | Port | API Route |
+|---|---:|---|
+| User Service | 3000 | /user |
+| Product Service | 3001 | /product |
+| Order Service | 3002 | /order |
+
+All three services are accessible through Nginx on port 80.
+
+## AWS Infrastructure
+Terraform configuration is available in the terraform directory. It defines EC2, ECR repositories, IAM permissions and security groups.
+
+## CI/CD
+Jenkins pipeline performs GitHub checkout, Docker Compose validation and microservices image builds. An ECR publishing stage is configured.
+
+## Deployment Verification
+Run `sudo docker compose ps` on EC2 to check application containers.
+All three API routes were verified through Nginx and returned HTTP 200.
+
+## Monitoring
+Prometheus scrapes its own metrics and Node Exporter every 15 seconds.
+Grafana uses Prometheus as its data source.
+Node Exporter Full dashboard (ID 1860) displays CPU, memory, disk and network metrics.
+Monitoring access is restricted to localhost and can be accessed through SSM port forwarding.
+
+## Terraform Commands
+- `terraform init`
+- `terraform validate`
+- `terraform plan`
+- `terraform apply`
+
+## Cleanup
+Use `terraform destroy` when the assessment infrastructure is no longer required.
